@@ -10,3 +10,9 @@ another links:
     https://www.redhat.com/archives/libguestfs/2012-July/msg00138.html
     https://www.cygwin.com/ml/binutils/2012-10/msg00114.html
 
+[2] autoconf, then ./configure
+
+error:
+    checking for qemu... no
+    configure: error: qemu must be installed
+
