@@ -1,0 +1,12 @@
+[1] run: ./configure
+
+error:
+    configure: error: in `/home/novokrestWin/libguestfs-cygwin-port/libguestfs-1.28.5':
+    configure: error: No support for glibc-style extended printf formatters.
+
+patch:
+    https://www.redhat.com/archives/libguestfs/2009-November/msg00255.html
+another links:
+    https://www.redhat.com/archives/libguestfs/2012-July/msg00138.html
+    https://www.cygwin.com/ml/binutils/2012-10/msg00114.html
+

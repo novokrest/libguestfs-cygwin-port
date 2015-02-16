@@ -83,6 +83,7 @@ int verbose = 0;
 int enable_network = 0;
 
 static void makeraw (const char *channel, int fd);
+#ifndef WIN32
 static int print_shell_quote (FILE *stream, const struct printf_info *info, const void *const *args);
 static int print_sysroot_shell_quote (FILE *stream, const struct printf_info *info, const void *const *args);
 #ifdef HAVE_REGISTER_PRINTF_SPECIFIER
@@ -92,6 +93,7 @@ static int print_arginfo (const struct printf_info *info, size_t n, int *argtype
 static int print_arginfo (const struct printf_info *info, size_t n, int *argtypes);
 #else
 #error "HAVE_REGISTER_PRINTF_{SPECIFIER|FUNCTION} not defined"
+#endif
 #endif
 #endif
 
@@ -150,6 +152,7 @@ main (int argc, char *argv[])
   if (winsock_init () == -1)
     error (EXIT_FAILURE, 0, "winsock initialization failed");
 
+#ifndef WIN32
 #ifdef HAVE_REGISTER_PRINTF_SPECIFIER
   /* http://udrepper.livejournal.com/20948.html */
   register_printf_specifier ('Q', print_shell_quote, print_arginfo);
@@ -160,6 +163,7 @@ main (int argc, char *argv[])
   register_printf_function ('R', print_sysroot_shell_quote, print_arginfo);
 #else
 #error "HAVE_REGISTER_PRINTF_{SPECIFIER|FUNCTION} not defined"
+#endif
 #endif
 #endif
 
@@ -893,6 +897,7 @@ int
 commandrvf (char **stdoutput, char **stderror, int flags,
             char const* const *argv)
 {
+#ifndef WIN32
   size_t so_size = 0, se_size = 0;
   int so_fd[2], se_fd[2];
   int flag_copy_stdin = flags & COMMAND_FLAG_CHROOT_COPY_FILE_TO_STDIN;
@@ -1094,6 +1099,10 @@ commandrvf (char **stdoutput, char **stderror, int flags,
     return WEXITSTATUS (r);
   } else
     return -1;
+#else
+  fprintf(stderr, "commandrvf: We would execute %s here, but this isn't yet implemented on Win32\n", argv[0]);
+  return -1;
+#endif
 }
 
 /* Split an output string into a NULL-terminated list of lines.
@@ -1181,6 +1190,7 @@ trim (char *str)
   memmove (str, p, len+1);
 }
 
+#ifndef WIN32
 /* printf helper function so we can use %Q ("quoted") and %R to print
  * shell-quoted strings.  See guestfs(3)/EXTENDING LIBGUESTFS for more
  * details.
@@ -1238,6 +1248,7 @@ print_arginfo (const struct printf_info *info, size_t n, int *argtypes)
 }
 #else
 #error "HAVE_REGISTER_PRINTF_{SPECIFIER|FUNCTION} not defined"
+#endif
 #endif
 #endif
 

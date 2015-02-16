@@ -465,19 +465,19 @@ if test "x$enable_daemon" = "xyes"; then
 
     dnl For modified printf in the daemon, we need glibc either (old-style)
     dnl register_printf_function or (new-style) register_printf_specifier.
-    AC_CHECK_FUNC([register_printf_specifier],[
-        AC_DEFINE([HAVE_REGISTER_PRINTF_SPECIFIER],[1],
-                  [Define to 1 if you have new-style register_printf_specifier.])
-    ],[
-        AC_CHECK_FUNC([register_printf_function],[
-            AC_DEFINE([HAVE_REGISTER_PRINTF_FUNCTION],[1],
-                      [Define to 1 if you have old-style register_printf_function.])
-        ],[
-            AC_MSG_FAILURE(
-[No support for glibc-style extended printf formatters.
-
-This means you either have a very old glibc (pre-2.0) or you
-are using some other libc where this is not supported.])])])
+dnl    AC_CHECK_FUNC([register_printf_specifier],[
+dnl        AC_DEFINE([HAVE_REGISTER_PRINTF_SPECIFIER],[1],
+dnl                  [Define to 1 if you have new-style register_printf_specifier.])
+dnl    ],[
+dnl        AC_CHECK_FUNC([register_printf_function],[
+dnl            AC_DEFINE([HAVE_REGISTER_PRINTF_FUNCTION],[1],
+dnl                      [Define to 1 if you have old-style register_printf_function.])
+dnl        ],[
+dnl            AC_MSG_FAILURE(
+dnl [No support for glibc-style extended printf formatters.
+dnl
+dnl This means you either have a very old glibc (pre-2.0) or you
+dnl are using some other libc where this is not supported.])])])
 fi
 AM_CONDITIONAL([INSTALL_DAEMON],[test "x$enable_install_daemon" = "xyes"])
 AM_CONDITIONAL([VALGRIND_DAEMON],[test "x$enable_valgrind_daemon" = "xyes"])
