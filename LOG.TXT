@@ -16,3 +16,10 @@ error:
     checking for qemu... no
     configure: error: qemu must be installed
 
+solution:
+    disable QEMU checking (temporary)
+
+[3] autoconf, then ./configure
+
+status:
+    done
