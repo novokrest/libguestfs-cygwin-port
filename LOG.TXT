@@ -119,4 +119,10 @@ error:
 
 solution:
 
+[15] make
+
+error:
+    virt-cat
+
+solution:
 

@@ -67,7 +67,12 @@ virt_cat_LDADD = \
 	$(LIBXML2_LIBS) \
 	$(LIBVIRT_LIBS) \
 	$(LTLIBINTL) \
-	../gnulib/lib/libgnu.la
+	../gnulib/lib/libgnu.la \
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 virt_filesystems_SOURCES = \
 	$(SHARED_SOURCE_FILES) \
@@ -90,7 +95,12 @@ virt_filesystems_LDADD = \
 	$(LIBXML2_LIBS) \
 	$(LIBVIRT_LIBS) \
 	$(LTLIBINTL) \
-	../gnulib/lib/libgnu.la
+	../gnulib/lib/libgnu.la \
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 virt_log_SOURCES = \
 	$(SHARED_SOURCE_FILES) \
@@ -113,7 +123,12 @@ virt_log_LDADD = \
 	$(LIBXML2_LIBS) \
 	$(LIBVIRT_LIBS) \
 	$(LTLIBINTL) \
-	../gnulib/lib/libgnu.la
+	../gnulib/lib/libgnu.la \
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 virt_ls_SOURCES = \
 	$(SHARED_SOURCE_FILES) \
@@ -138,7 +153,12 @@ virt_ls_LDADD = \
 	$(LIBXML2_LIBS) \
 	$(LIBVIRT_LIBS) \
 	$(LTLIBINTL) \
-	../gnulib/lib/libgnu.la
+	../gnulib/lib/libgnu.la \
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 # Manual pages and HTML files for the website.
 man_MANS = virt-cat.1 virt-filesystems.1 virt-log.1 virt-ls.1
