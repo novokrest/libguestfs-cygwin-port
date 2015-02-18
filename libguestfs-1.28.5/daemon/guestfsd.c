@@ -241,8 +241,10 @@ main (int argc, char *argv[])
     perror ("sigaction SIGPIPE"); /* but try to continue anyway ... */
 #endif
 
+#ifndef __CYGWIN__
 #ifdef WIN32
 # define setenv(n,v,f) _putenv(n "=" v)
+#endif
 #endif
   /* Set up a basic environment.  After we are called by /init the
    * environment is essentially empty.
@@ -256,6 +258,9 @@ main (int argc, char *argv[])
   setenv ("LC_ALL", "C", 1);
   setenv ("TERM", "dumb", 1);
 
+#ifdef __CYGWIN__
+  umask(022);
+#else
 #ifndef WIN32
   /* We document that umask defaults to 022 (it should be this anyway). */
   umask (022);
@@ -265,6 +270,7 @@ main (int argc, char *argv[])
    * contains obvious errors.
    */
   _umask (0);
+#endif
 #endif
 
   /* Make a private copy of /etc/lvm so we can change the config (see

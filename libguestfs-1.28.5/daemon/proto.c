@@ -183,9 +183,11 @@ main_loop (int _sock)
      * error handling paths don't set errno correctly.
      */
     errno = 0;
+#ifndef __CYGWIN__
 #ifdef WIN32
     SetLastError (0);
     WSASetLastError (0);
+#endif
 #endif
 
     /* Now start to process this message. */

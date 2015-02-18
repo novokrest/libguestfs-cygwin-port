@@ -196,7 +196,8 @@ guestfsd_LDADD = \
 	$(LIB_CLOCK_GETTIME) \
 	$(LIBINTL) \
 	$(SERVENT_LIB) \
-	$(PCRE_LIBS)
+	$(PCRE_LIBS) \
+	-ltirpc
 
 guestfsd_CPPFLAGS = \
 	-I$(top_srcdir)/gnulib/lib \
