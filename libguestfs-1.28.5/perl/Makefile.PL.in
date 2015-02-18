@@ -24,7 +24,7 @@ WriteMakefile (
     NAME => 'Sys::Guestfs',
     VERSION => '0.@MAX_PROC_NR@',
 
-    LIBS => '-L@top_builddir@/src/.libs -lguestfs',
+    LIBS => '-L@top_builddir@/src/.libs -lguestfs -lm -ltirpc -lintl -lxml2 -lz -llzma -liconv -lm -lpcre -lpcrecpp',
     INC => '-I@top_builddir@/src -I@top_srcdir@/src',
     TYPEMAPS => [ '@srcdir@/typemap' ],
     CCFLAGS => $Config{ccflags} . ' -DGUESTFS_PRIVATE=1 @CFLAGS@',
