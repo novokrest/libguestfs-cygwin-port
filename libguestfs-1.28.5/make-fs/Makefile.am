@@ -51,7 +51,12 @@ virt_make_fs_LDADD = \
 	$(top_builddir)/src/libguestfs.la \
 	$(LIBXML2_LIBS) \
 	$(LTLIBINTL) \
-	../gnulib/lib/libgnu.la
+	../gnulib/lib/libgnu.la \
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 # Manual pages and HTML files for the website.
 man_MANS = virt-make-fs.1
