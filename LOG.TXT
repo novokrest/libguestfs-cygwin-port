@@ -127,3 +127,13 @@ error:
 solution:
 
 [16] make: diff
+
+....
+
+[17] make: gobject
+
+error:
+    No rult for target .typelib
+
+solution:
+    remove condition HAVE_INTROSPECTION
