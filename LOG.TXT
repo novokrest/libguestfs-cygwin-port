@@ -49,3 +49,13 @@ error:
     guestfs_protocol.h:9:21: fatal error: rpc/rpc.h: No such file or directory
      #include <rpc/rpc.h>
 
+[7] make
+
+error:
+    link error
+
+solution:
+    add ldflags to "create_disk" target (examples)
+
+
+

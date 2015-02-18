@@ -84,7 +84,11 @@ create_disk_CPPFLAGS = \
 create_disk_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS)
 create_disk_LDADD = \
-	$(top_builddir)/src/libguestfs.la
+	$(top_builddir)/src/libguestfs.la \
+    -ltirpc \
+    -lintl \
+    -lxml2 -lz -llzma -liconv -lm \
+    -lpcre -lpcrecpp
 
 debug_logging_SOURCES = debug-logging.c
 debug_logging_CPPFLAGS = \
