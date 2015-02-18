@@ -76,4 +76,22 @@ error:
 solution:
     define like /usr/include/linux/limits.h
 
+[10] make
 
+error:
+    daemon: couldn't link to: 
+        1. rpc
+        2. _putenv and _umask
+        3. WSASetLastError
+
+solution:
+    1. add -ltirpc
+    2-3. ignore _WIN32
+
+[11] make
+
+error:
+    supermin couldn't detect PM system for prepare appliance
+
+solution:
+    comment supermin call

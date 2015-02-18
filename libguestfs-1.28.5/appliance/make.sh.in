@@ -30,4 +30,4 @@ if [ "x@SUPERMIN_EXTRA_OPTIONS@" != "xno" ]; then
 fi
 
 echo @SUPERMIN@ --prepare -v -o supermin.d $(< packagelist ) $extra
-@SUPERMIN@ --prepare -v -o supermin.d $(< packagelist ) $extra
+# @SUPERMIN@ --prepare -v -o supermin.d $(< packagelist ) $extra
