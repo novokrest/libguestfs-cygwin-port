@@ -129,14 +129,14 @@ SUBDIRS += csharp
 # OCaml tools.  Note 'mllib' and 'customize' contain shared code used
 # by other OCaml tools, so these must come first.
 if HAVE_OCAML
-SUBDIRS += \
-	mllib \
-	customize \
-	builder builder/website \
-	resize \
-	sparsify \
-	sysprep \
-	v2v
+#SUBDIRS += \
+#	mllib \
+#	customize \
+#	builder builder/website \
+#	resize \
+#	sparsify \
+#	sysprep \
+#	v2v
 endif
 
 # Perl tools.
@@ -268,7 +268,7 @@ if HAVE_LUA
 HTMLFILES += html/guestfs-lua.3.html
 endif
 if HAVE_OCAML
-HTMLFILES += html/guestfs-ocaml.3.html
+# HTMLFILES += html/guestfs-ocaml.3.html
 endif
 if HAVE_PERL
 HTMLFILES += html/guestfs-perl.3.html

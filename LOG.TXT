@@ -137,3 +137,14 @@ error:
 
 solution:
     remove condition HAVE_INTROSPECTION
+
+[18] make: customize
+
+changes:
+    disable sources by HAVE_OCAML
+
+=====================
+     MAKE done
+=====================
+
+
