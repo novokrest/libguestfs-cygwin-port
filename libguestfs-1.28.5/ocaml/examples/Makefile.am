@@ -52,19 +52,19 @@ OCAMLFINDFLAGS = -cclib -L$(top_builddir)/src/.libs
 if HAVE_OCAMLOPT
 create_disk: create_disk.ml
 	$(OCAMLFIND) ocamlopt $(OCAMLFINDFLAGS) -package unix -linkpkg \
-          -warn-error A -I .. mlguestfs.cmxa $< -o $@
+          -warn-error A -I .. mlguestfs.cmxa $< -cclib -ltirpc -cclib -lintl -cclib -lxml2 -cclib -lz -cclib -llzma -cclib -liconv -cclib -lm -cclib -lpcre -cclib -lpcrecpp -o $@
 
 inspect_vm: inspect_vm.ml
 	$(OCAMLFIND) ocamlopt $(OCAMLFINDFLAGS) -package unix -linkpkg \
-          -warn-error A -I .. mlguestfs.cmxa $< -o $@
+          -warn-error A -I .. mlguestfs.cmxa $< -cclib -ltirpc -cclib -lintl -cclib -lxml2 -cclib -lz -cclib -llzma -cclib -liconv -cclib -lm -cclib -lpcre -cclib -lpcrecpp -o $@
 else
 create_disk: create_disk.ml
 	$(OCAMLFIND) ocamlc $(OCAMLFINDFLAGS) -package unix -linkpkg \
-          -warn-error A -I .. mlguestfs.cma -custom $< -o $@
+          -warn-error A -I .. mlguestfs.cma -custom $< -cclib -ltirpc -cclib -lintl -cclib -lxml2 -cclib -lz -cclib -llzma -cclib -liconv -cclib -lm -cclib -lpcre -cclib -lpcrecpp -o $@
 
 inspect_vm: inspect_vm.ml
 	$(OCAMLFIND) ocamlc $(OCAMLFINDFLAGS) -package unix -linkpkg \
-          -warn-error A -I .. mlguestfs.cma -custom $< -o $@
+          -warn-error A -I .. mlguestfs.cma -custom $< -cclib -ltirpc -cclib -lintl -cclib -lxml2 -cclib -lz -cclib -llzma -cclib -liconv -cclib -lm -cclib -lpcre -cclib -lpcrecpp -o $@
 endif
 
 endif
