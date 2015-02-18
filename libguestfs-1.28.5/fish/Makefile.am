@@ -113,7 +113,7 @@ guestfish_SOURCES = \
 # This convenience library is solely to compile its generated sources with
 # custom flags.
 librc_protocol_la_SOURCES = rc_protocol.c rc_protocol.h
-librc_protocol_la_CFLAGS = -Wall -Wno-unused -fno-strict-aliasing
+librc_protocol_la_CFLAGS = -Wall -Wno-unused -fno-strict-aliasing -I/usr/include/tirpc
 
 # Build the command lookup perfect hash code.  The generated code has
 # lots of warnings so we must compile it in a separate mini-library.
@@ -131,12 +131,14 @@ guestfish_CPPFLAGS = \
 	-DLOCALEBASEDIR=\""$(datadir)/locale"\" \
 	-I$(top_srcdir)/src -I$(top_builddir)/src \
 	-I$(top_srcdir)/fish -I$(top_builddir)/fish \
-	-I$(srcdir)/../gnulib/lib -I../gnulib/lib
+	-I$(srcdir)/../gnulib/lib -I../gnulib/lib \
+	-I/usr/include/tirpc
 
 guestfish_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBCONFIG_CFLAGS) \
-	$(LIBXML2_CFLAGS)
+	$(LIBXML2_CFLAGS) \
+	-I/usr/include/tirpc
 
 guestfish_LDADD = \
 	$(LIBCONFIG_LIBS) \
@@ -145,7 +147,11 @@ guestfish_LDADD = \
 	$(top_builddir)/src/libutils.la \
 	$(LIBXML2_LIBS) \
 	$(LTLIBINTL) \
-	-lm
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 # Make guestfish use the convenience libraries.
 noinst_LTLIBRARIES = libcmds.la librc_protocol.la
