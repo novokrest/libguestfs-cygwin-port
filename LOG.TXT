@@ -112,3 +112,11 @@ error:
 solution:
     add c(pp)flags and ldflags for trpc, xdr, etc...
 
+[14] make
+
+error:
+    virt-alignment-scan
+
+solution:
+
+
