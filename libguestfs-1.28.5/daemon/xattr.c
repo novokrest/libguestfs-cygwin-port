@@ -16,6 +16,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+/* from /usr/include/linux/limits.h */
+#define XATTR_SIZE_MAX 65536
+
 #include <config.h>
 
 #include <stdio.h>

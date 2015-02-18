@@ -68,4 +68,12 @@ error:
 solution:
     add include_path to "tirpc"
 
+[9] make
+
+error:
+    daemon: not defined XATTR_SIZE_MAX
+
+solution:
+    define like /usr/include/linux/limits.h
+
 
