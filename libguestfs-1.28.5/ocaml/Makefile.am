@@ -147,11 +147,11 @@ endif
 
 %.bc: %.cmo mlguestfs.cma
 	$(top_builddir)/libtool -dlopen $(top_builddir)/src/.libs/libguestfs.la --mode=execute \
-	$(OCAMLFIND) ocamlc $(OCAMLCFLAGS) -I . -package unix -linkpkg mlguestfs.cma $< -o $@
+	$(OCAMLFIND) ocamlc $(OCAMLCFLAGS) -I . -package unix -linkpkg mlguestfs.cma $< -cclib -ltirpc -cclib -lintl -cclib -lxml2 -cclib -lz -cclib -llzma -cclib -liconv -cclib -lm -cclib -lpcre -cclib -lpcrecpp -o $@
 
 if HAVE_OCAMLOPT
 %.opt: %.cmx mlguestfs.cmxa
-	$(OCAMLFIND) ocamlopt $(OCAMLOPTFLAGS) -cclib -L$(top_builddir)/src/.libs -I . -package unix -linkpkg mlguestfs.cmxa $< -o $@
+	$(OCAMLFIND) ocamlopt $(OCAMLOPTFLAGS) -cclib -L$(top_builddir)/src/.libs -I . -package unix -linkpkg mlguestfs.cmxa $< -cclib -ltirpc -cclib -lintl -cclib -lxml2 -cclib -lz -cclib -llzma -cclib -liconv -cclib -lm -cclib -lpcre -cclib -lpcrecpp -o $@
 endif
 
 check-valgrind:
