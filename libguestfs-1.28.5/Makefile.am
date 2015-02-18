@@ -99,7 +99,7 @@ if HAVE_PYTHON
 SUBDIRS += python python/examples
 endif
 if HAVE_RUBY
-SUBDIRS += ruby ruby/examples
+# SUBDIRS += ruby ruby/examples
 endif
 if HAVE_JAVA
 SUBDIRS += java java/examples
@@ -277,7 +277,7 @@ if HAVE_PYTHON
 HTMLFILES += html/guestfs-python.3.html
 endif
 if HAVE_RUBY
-HTMLFILES += html/guestfs-ruby.3.html
+# HTMLFILES += html/guestfs-ruby.3.html
 endif
 if HAVE_FUSE
 HTMLFILES += \
