@@ -49,7 +49,7 @@ noinst_LIBRARIES = libprotocol.a
 # This convenience library is solely to compile its generated sources with
 # custom flags.
 libprotocol_a_SOURCES = guestfs_protocol.c guestfs_protocol.h
-libprotocol_a_CFLAGS = -Wall -Wno-unused -fno-strict-aliasing
+libprotocol_a_CFLAGS = -Wall -Wno-unused -fno-strict-aliasing -I/usr/include/tirpc
 
 $(top_builddir)/src/guestfs_protocol.c: force
 	$(MAKE) -C $(top_builddir)/src guestfs_protocol.c
@@ -202,14 +202,16 @@ guestfsd_CPPFLAGS = \
 	-I$(top_srcdir)/gnulib/lib \
 	-I$(top_builddir)/gnulib/lib \
 	-I$(top_srcdir)/src \
-	-I$(top_builddir)/src
+	-I$(top_builddir)/src \
+	-I/usr/include/tirpc
 guestfsd_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(AUGEAS_CFLAGS) \
 	$(HIVEX_CFLAGS) \
 	$(SD_JOURNAL_CFLAGS) \
 	$(YAJL_CFLAGS) \
-	$(PCRE_CFLAGS)
+	$(PCRE_CFLAGS) \
+	-I/usr/include/tirpc
 
 # Manual pages and HTML files for the website.
 if INSTALL_DAEMON

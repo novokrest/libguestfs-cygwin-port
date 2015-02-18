@@ -60,4 +60,12 @@ solution:
     add ldflags to "debug_icon" target (examples)
     add ldflags to "inspect_vm" target (examples)
 
+[8] make
+
+error:
+    daemon: not included rpc
+
+solution:
+    add include_path to "tirpc"
+
 
