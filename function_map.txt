@@ -1,0 +1,16 @@
+guestfs_launch : src/actions-3.c
+
+guestfs___call_callbacks_message : src/event.c
+/* default (old-style) print message on stderr, else call g->events[?].cb */
+
+guestfs__launch : src/launch.c
+
+struct guestfs_h : guestfs_internal.h
+
+guestfs___lazy_make_tmpdir : src/tmpdirs.c
+
+guestfs_get_tmpdir : actions-3.c ---> guestfs__get_tmpdir : tmpdirs.c
+/* g->int_tmpdir || g->env_tmpdir || /tmp */
+
+guestfs_set_tmpdir : actions-5.c ---> guestfs__set_tmpdir : tmpdirs.c
+
