@@ -59,7 +59,6 @@ virt_df_CPPFLAGS = \
 	-I$(srcdir)/../gnulib/lib -I../gnulib/lib
 
 virt_df_CFLAGS = \
-	-pthread \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(LIBCONFIG_CFLAGS) \
 	$(LIBXML2_CFLAGS) \
@@ -73,7 +72,11 @@ virt_df_LDADD = \
 	$(LIBVIRT_LIBS) \
 	$(LTLIBINTL) \
 	../gnulib/lib/libgnu.la \
-	-lm
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 # Manual pages and HTML files for the website.
 man_MANS = virt-df.1
