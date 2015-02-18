@@ -135,7 +135,7 @@ libguestfs_la_CPPFLAGS = \
 	-DGUESTFS_WARN_DEPRECATED=1 \
 	-DGUESTFS_PRIVATE=1 \
 	-DLIBOSINFO_DB_PATH='"$(datadir)/libosinfo/db"' \
-	-I$(top_srcdir)/gnulib/lib -I$(top_builddir)/gnulib/lib
+	-I$(top_srcdir)/gnulib/lib -I$(top_builddir)/gnulib/lib -I/usr/include/tirpc
 
 libguestfs_la_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
@@ -196,7 +196,7 @@ errnostring-gperf.c: errnostring-gperf.gperf
 # custom flags.
 libprotocol_la_SOURCES = guestfs_protocol.c  guestfs_protocol.h
 libprotocol_la_CFLAGS = \
-	-Wall -Wno-unused -fno-strict-aliasing $(GCC_VISIBILITY_HIDDEN)
+	-Wall -Wno-unused -fno-strict-aliasing $(GCC_VISIBILITY_HIDDEN) -I/usr/include/tirpc
 
 if HAVE_RPCGEN
 RPCGEN_DEFS =
