@@ -85,7 +85,12 @@ virt_inspector_LDADD = \
 	$(LIBXML2_LIBS) \
 	$(LIBVIRT_LIBS) \
 	$(LTLIBINTL) \
-	../gnulib/lib/libgnu.la
+	../gnulib/lib/libgnu.la \
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 # Manual pages and HTML files for the website.
 man_MANS = virt-inspector.1
