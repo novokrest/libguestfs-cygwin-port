@@ -62,7 +62,6 @@ virt_p2v_CPPFLAGS = \
 	-I$(srcdir)/../gnulib/lib -I../gnulib/lib
 
 virt_p2v_CFLAGS = \
-	-pthread \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS) \
 	$(PCRE_CFLAGS) \
 	$(LIBXML2_CFLAGS) \
@@ -73,7 +72,12 @@ virt_p2v_LDADD = \
 	$(PCRE_LIBS) \
 	$(LIBXML2_LIBS) \
 	$(GTK2_LIBS) \
-	../gnulib/lib/libgnu.la
+	../gnulib/lib/libgnu.la \
+	-lm \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 # Scripts to build the disk image, USB key, or kickstart.
 bin_SCRIPTS = virt-p2v-make-disk virt-p2v-make-kickstart
