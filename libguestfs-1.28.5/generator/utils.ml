@@ -292,7 +292,7 @@ let pod2text_memo : (memo_key, memo_value) Hashtbl.t =
   with
     _ -> Hashtbl.create 13
 let pod2text_memo_updated () =
-  let chan = open_out pod2text_memo_filename in
+  let chan = open_out_bin pod2text_memo_filename in
   output_value chan pod2text_memo;
   close_out chan
 

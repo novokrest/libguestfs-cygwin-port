@@ -49,7 +49,7 @@ let output_to ?(perm = 0o444) filename k =
   Hashtbl.add fileshash filename ();
 
   let filename_new = filename ^ ".new" in
-  chan := open_out filename_new;
+  chan := open_out_bin filename_new;
   k ();
   close_out !chan;
   chan := Pervasives.stdout;
