@@ -95,3 +95,11 @@ error:
 
 solution:
     comment supermin call
+
+[12] make
+
+error:
+    test_tool
+
+solution:
+    add linker flags
