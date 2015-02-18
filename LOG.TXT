@@ -23,3 +23,29 @@ solution:
 
 status:
     done
+
+[4] make
+
+error:
+    Fatal error: exception Failure("output_value: not a binary channel")
+
+solution:
+    open_out -> open_out_bin
+
+[5] make
+
+error:
+    In file included from actions-0.c:34:0:
+    guestfs-internal.h:26:23: fatal error: rpc/types.h: No such file or directory
+     #include <rpc/types.h>
+
+solution:
+    add to libguestfs_la_CPPFLAGS include path to "tirpc"
+
+[6] make
+
+error:
+    In file included from guestfs_protocol.c:6:0:
+    guestfs_protocol.h:9:21: fatal error: rpc/rpc.h: No such file or directory
+     #include <rpc/rpc.h>
+
