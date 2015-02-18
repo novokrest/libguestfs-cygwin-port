@@ -106,7 +106,7 @@ EXTRA_DIST += \
 
 # Custom install rule.
 install-data-hook:
-	mkdir -p $(DESTDIR)$(lualibdir)
-	mv $(DESTDIR)$(lualibdir)/libluaguestfs.so $(DESTDIR)$(lualibdir)/guestfs.so
+#	mkdir -p $(DESTDIR)$(lualibdir)
+#	mv $(DESTDIR)$(lualibdir)/libluaguestfs.so $(DESTDIR)$(lualibdir)/guestfs.so
 
 endif

@@ -147,5 +147,9 @@ changes:
      MAKE done...but if all is OK????
 =====================
 
+[19] make install
 
-
+    create mock file ./appliance/supermin.d/base.tar.gz
+    create mock file ./appliance/supermin.d/packages
+    "clean" install in ./ocaml/Makefile.am
+    "clean" install from ./lua/Makefile.am
