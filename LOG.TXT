@@ -56,6 +56,8 @@ error:
 
 solution:
     add ldflags to "create_disk" target (examples)
-
+    add ldflags to "debug_logging" target (examples)
+    add ldflags to "debug_icon" target (examples)
+    add ldflags to "inspect_vm" target (examples)
 
 

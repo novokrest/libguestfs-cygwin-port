@@ -85,10 +85,10 @@ create_disk_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS)
 create_disk_LDADD = \
 	$(top_builddir)/src/libguestfs.la \
-    -ltirpc \
-    -lintl \
-    -lxml2 -lz -llzma -liconv -lm \
-    -lpcre -lpcrecpp
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 debug_logging_SOURCES = debug-logging.c
 debug_logging_CPPFLAGS = \
@@ -97,7 +97,11 @@ debug_logging_CPPFLAGS = \
 debug_logging_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS)
 debug_logging_LDADD = \
-	$(top_builddir)/src/libguestfs.la
+	$(top_builddir)/src/libguestfs.la \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 display_icon_SOURCES = display-icon.c
 display_icon_CPPFLAGS = \
@@ -106,7 +110,11 @@ display_icon_CPPFLAGS = \
 display_icon_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS)
 display_icon_LDADD = \
-	$(top_builddir)/src/libguestfs.la
+	$(top_builddir)/src/libguestfs.la \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 inspect_vm_SOURCES = inspect-vm.c
 inspect_vm_CPPFLAGS = \
@@ -115,7 +123,11 @@ inspect_vm_CPPFLAGS = \
 inspect_vm_CFLAGS = \
 	$(WARN_CFLAGS) $(WERROR_CFLAGS)
 inspect_vm_LDADD = \
-	$(top_builddir)/src/libguestfs.la
+	$(top_builddir)/src/libguestfs.la \
+	-ltirpc \
+	-lintl \
+	-lxml2 -lz -llzma -liconv -lm \
+	-lpcre -lpcrecpp
 
 if HAVE_FUSE
 mount_local_SOURCES = mount-local.c
