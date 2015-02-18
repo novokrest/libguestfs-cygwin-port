@@ -71,35 +71,4 @@ INTROSPECTION_GIRS =
 INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) --warn-all
 INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
 
-if HAVE_INTROSPECTION
 
-introspection_sources = \
-	$(libguestfs_gobject_1_0_la_HEADERS) \
-	$(libguestfs_gobject_1_0_la_SOURCES)
-
-Guestfs-1.0.gir: $(libname)
-Guestfs_1_0_gir_INCLUDES = GObject-2.0 Gio-2.0
-Guestfs_1_0_gir_CFLAGS = $(INCLUDES) -I$(srcdir)/include
-Guestfs_1_0_gir_LIBS = $(libname) $(top_builddir)/src/libguestfs.la
-Guestfs_1_0_gir_FILES = $(patsubst %,$(srcdir)/%,$(introspection_sources))
-INTROSPECTION_GIRS += Guestfs-1.0.gir
-
-girdir = $(datadir)/gir-1.0
-gir_DATA = $(INTROSPECTION_GIRS)
-
-typelibdir = $(libdir)/girepository-1.0
-typelib_DATA = $(INTROSPECTION_GIRS:.gir=.typelib)
-
-TESTS = run-tests
-
-if ENABLE_APPLIANCE
-TESTS += run-live-tests
-endif ENABLE_APPLIANCE
-
-TESTS_ENVIRONMENT = $(top_builddir)/run --test
-
-$(TESTS): $(typelib_DATA)
-
-CLEANFILES += $(gir_DATA) $(typelib_DATA)
-
-endif HAVE_INTROSPECTION
