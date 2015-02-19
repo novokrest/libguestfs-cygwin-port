@@ -19,6 +19,7 @@
 *.patch
 *.rej
 *.swp
+*.exe
 
 bindtests.tmp
 cscope.out
