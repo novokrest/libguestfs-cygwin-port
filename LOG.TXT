@@ -153,3 +153,8 @@ changes:
     create mock file ./appliance/supermin.d/packages
     "clean" install in ./ocaml/Makefile.am
     "clean" install from ./lua/Makefile.am
+
+[20] libtool warning about undefined symbols
+    after googling and reading forums I try to add LDFLAG -no-undefined and it seems to be worked...
+
+

@@ -867,6 +867,8 @@ dnl         AC_MSG_FAILURE([$QEMU version must be >= 1.0.])
     fi
 ])
 
+LT_INIT([win32-dll])
+
 dnl Enable packet dumps when in verbose mode.  This generates lots
 dnl of debug info, only useful for people debugging the RPC mechanism.
 AC_ARG_ENABLE([packet-dump],[

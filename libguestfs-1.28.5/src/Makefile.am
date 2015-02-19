@@ -166,7 +166,9 @@ libguestfs_la_LIBADD = \
 
 # Force libtool to name the library 'libguestfs.so.0.$(MAX_PROC_NR).0'.
 # Include the version script to limit which symbols are exported.
-libguestfs_la_LDFLAGS = \
+libguestfs_la_LDFLAGS = \ 
+	-no-undefined \
+	-ltirpc -lintl -lxml2 -lz -llzma -liconv -lm -lpcre -lpcrecpp \
 	-version-info $(MAX_PROC_NR):0:$(MAX_PROC_NR) \
 	$(VERSION_SCRIPT_FLAGS)$(srcdir)/libguestfs.syms
 
