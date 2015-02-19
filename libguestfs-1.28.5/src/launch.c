@@ -477,6 +477,8 @@ guestfs___register_backend (const char *name, const struct backend_ops *ops)
 
   b->next = backends;
   backends = b;
+
+  fprintf(stdout, "guestfs___register_backend: %s\n", name);
 }
 
 /* Set the current backend.  Notes:
