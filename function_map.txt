@@ -14,3 +14,19 @@ guestfs_get_tmpdir : actions-3.c ---> guestfs__get_tmpdir : tmpdirs.c
 
 guestfs_set_tmpdir : actions-5.c ---> guestfs__set_tmpdir : tmpdirs.c
 
+guestfs_create : handle.c
+
+guestfs_set_backend : src/actions-0.c
+guestfs__set_backend : src/handle.c
+guestfs___set_backend : src/launch.c
+
+guestfs_add_drive_opts : src/actions-variants.c
+
+guestfs___register_backend : src/launch.c
+
+guestfs_inspect_os : src/actions-0.c
+guestfs__inspect_os : src/inspect.c
+
+guestfs___build_appliance : src/appliance.c
+
+guestfs___cmd_run : src/command.c
