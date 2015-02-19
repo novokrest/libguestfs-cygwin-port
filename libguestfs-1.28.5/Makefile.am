@@ -22,7 +22,7 @@ ACLOCAL_AMFLAGS = -I m4
 # Gnulib - must be built and tested before the library.
 SUBDIRS = gnulib/lib
 if ENABLE_GNULIB_TESTS
-SUBDIRS += gnulib/tests
+# SUBDIRS += gnulib/tests
 endif
 
 # Basic source for the library.
@@ -32,99 +32,99 @@ if ENABLE_DAEMON
 SUBDIRS += daemon
 endif
 if ENABLE_APPLIANCE
-SUBDIRS += appliance
+# SUBDIRS += appliance
 endif
 
 # Tests - order is important.
 if ENABLE_APPLIANCE
-SUBDIRS += tests/qemu
-SUBDIRS += tests/guests
-SUBDIRS += tests/c-api
-SUBDIRS += tests/tmpdirs
-SUBDIRS += tests/protocol
-SUBDIRS += tests/events
-SUBDIRS += tests/parallel
-SUBDIRS += tests/create
-SUBDIRS += tests/disks
-SUBDIRS += tests/discard
-SUBDIRS += tests/mountable
-SUBDIRS += tests/network
-SUBDIRS += tests/lvm
-SUBDIRS += tests/luks
-SUBDIRS += tests/md
-SUBDIRS += tests/selinux
-SUBDIRS += tests/ntfsclone
-SUBDIRS += tests/btrfs
-SUBDIRS += tests/xfs
-SUBDIRS += tests/charsets
-SUBDIRS += tests/xml
-SUBDIRS += tests/mount-local
-SUBDIRS += tests/9p
-SUBDIRS += tests/rsync
-SUBDIRS += tests/bigdirs
-SUBDIRS += tests/disk-labels
-SUBDIRS += tests/hotplug
-SUBDIRS += tests/nbd
-SUBDIRS += tests/http
-SUBDIRS += tests/syslinux
-SUBDIRS += tests/journal
-SUBDIRS += tests/fuzz
-SUBDIRS += tests/relative-paths
-SUBDIRS += tests/regressions
+# SUBDIRS += tests/qemu
+# SUBDIRS += tests/guests
+# SUBDIRS += tests/c-api
+# SUBDIRS += tests/tmpdirs
+# SUBDIRS += tests/protocol
+# SUBDIRS += tests/events
+# SUBDIRS += tests/parallel
+# SUBDIRS += tests/create
+# SUBDIRS += tests/disks
+# SUBDIRS += tests/discard
+# SUBDIRS += tests/mountable
+# SUBDIRS += tests/network
+# SUBDIRS += tests/lvm
+# SUBDIRS += tests/luks
+# SUBDIRS += tests/md
+# SUBDIRS += tests/selinux
+# SUBDIRS += tests/ntfsclone
+# SUBDIRS += tests/btrfs
+# SUBDIRS += tests/xfs
+# SUBDIRS += tests/charsets
+# SUBDIRS += tests/xml
+# SUBDIRS += tests/mount-local
+# SUBDIRS += tests/9p
+# SUBDIRS += tests/rsync
+# SUBDIRS += tests/bigdirs
+# SUBDIRS += tests/disk-labels
+# SUBDIRS += tests/hotplug
+# SUBDIRS += tests/nbd
+# SUBDIRS += tests/http
+# SUBDIRS += tests/syslinux
+# SUBDIRS += tests/journal
+# SUBDIRS += tests/fuzz
+# SUBDIRS += tests/relative-paths
+# SUBDIRS += tests/regressions
 endif
 
 # libguestfs-test-tool
-SUBDIRS += test-tool
+# SUBDIRS += test-tool
 
 # Guestfish.
-SUBDIRS += fish
+# SUBDIRS += fish
 
 # virt-tools in C.
-SUBDIRS += align cat diff df edit format inspector make-fs rescue
+# SUBDIRS += align cat diff df edit format inspector make-fs rescue
 if HAVE_P2V
-SUBDIRS += p2v
+# SUBDIRS += p2v
 endif
 
 # bash-completion
-SUBDIRS += bash
+# SUBDIRS += bash
 
 # Language bindings.
 if HAVE_PERL
-SUBDIRS += perl perl/examples
+# SUBDIRS += perl perl/examples
 endif
 if HAVE_OCAML
-SUBDIRS += ocaml ocaml/examples
+# SUBDIRS += ocaml ocaml/examples
 endif
 if HAVE_PYTHON
-SUBDIRS += python python/examples
+# SUBDIRS += python python/examples
 endif
 if HAVE_RUBY
 # SUBDIRS += ruby ruby/examples
 endif
 if HAVE_JAVA
-SUBDIRS += java java/examples
+# SUBDIRS += java java/examples
 endif
 if HAVE_HASKELL
-SUBDIRS += haskell
+# SUBDIRS += haskell
 endif
 if HAVE_PHP
-SUBDIRS += php
+# SUBDIRS += php
 endif
 if HAVE_ERLANG
-SUBDIRS += erlang erlang/examples
+# SUBDIRS += erlang erlang/examples
 endif
 if HAVE_LUA
-SUBDIRS += lua lua/examples
+# SUBDIRS += lua lua/examples
 endif
 if HAVE_GOBJECT
-SUBDIRS += gobject
+# SUBDIRS += gobject
 endif
 if HAVE_GOLANG
-SUBDIRS += golang golang/examples
+# SUBDIRS += golang golang/examples
 endif
 
 # Unconditional because nothing is built yet.
-SUBDIRS += csharp
+# SUBDIRS += csharp
 
 # OCaml tools.  Note 'mllib' and 'customize' contain shared code used
 # by other OCaml tools, so these must come first.
@@ -141,17 +141,17 @@ endif
 
 # Perl tools.
 if HAVE_TOOLS
-SUBDIRS += tools
+# SUBDIRS += tools
 endif
 
 # guestmount
 if HAVE_FUSE
-SUBDIRS += fuse
+# SUBDIRS += fuse
 endif
 
 # po-docs must come after tools, inspector.
 if HAVE_PO4A
-SUBDIRS += po-docs
+# SUBDIRS += po-docs
 endif
 
 EXTRA_DIST = \
@@ -216,94 +216,94 @@ EXTRA_DIST = \
 	.x-sc_trailing_blank
 
 # The website.
-HTMLFILES = \
-	html/guestfs.3.html \
-	html/guestfs-examples.3.html \
-	html/guestfs-faq.1.html \
-	html/guestfs-performance.1.html \
-	html/guestfs-recipes.1.html \
-	html/guestfs-release-notes.1.html \
-	html/guestfs-testing.1.html \
-	html/guestfsd.8.html \
-	html/guestfish.1.html \
-	html/libguestfs-make-fixed-appliance.1.html \
-	html/libguestfs-test-tool.1.html \
-	html/virt-alignment-scan.1.html \
-	html/virt-builder.1.html \
-	html/virt-cat.1.html \
-	html/virt-copy-in.1.html \
-	html/virt-copy-out.1.html \
-	html/virt-customize.1.html \
-	html/virt-df.1.html \
-	html/virt-diff.1.html \
-	html/virt-edit.1.html \
-	html/virt-filesystems.1.html \
-	html/virt-format.1.html \
-	html/virt-inspector.1.html \
-	html/virt-list-filesystems.1.html \
-	html/virt-list-partitions.1.html \
-	html/virt-log.1.html \
-	html/virt-ls.1.html \
-	html/virt-make-fs.1.html \
-	html/virt-rescue.1.html \
-	html/virt-resize.1.html \
-	html/virt-sparsify.1.html \
-	html/virt-sysprep.1.html \
-	html/virt-tar.1.html \
-	html/virt-tar-in.1.html \
-	html/virt-tar-out.1.html \
-	html/virt-v2v.1.html \
-	html/virt-win-reg.1.html
+HTMLFILES = 
+# 	html/guestfs.3.html \
+# 	html/guestfs-examples.3.html \
+# 	html/guestfs-faq.1.html \
+# 	html/guestfs-performance.1.html \
+# 	html/guestfs-recipes.1.html \
+# 	html/guestfs-release-notes.1.html \
+# 	html/guestfs-testing.1.html \
+# 	html/guestfsd.8.html \
+# 	html/guestfish.1.html \
+# 	html/libguestfs-make-fixed-appliance.1.html \
+# 	html/libguestfs-test-tool.1.html \
+# 	html/virt-alignment-scan.1.html \
+# 	html/virt-builder.1.html \
+# 	html/virt-cat.1.html \
+# 	html/virt-copy-in.1.html \
+# 	html/virt-copy-out.1.html \
+# 	html/virt-customize.1.html \
+# 	html/virt-df.1.html \
+# 	html/virt-diff.1.html \
+# 	html/virt-edit.1.html \
+# 	html/virt-filesystems.1.html \
+# 	html/virt-format.1.html \
+# 	html/virt-inspector.1.html \
+# 	html/virt-list-filesystems.1.html \
+# 	html/virt-list-partitions.1.html \
+# 	html/virt-log.1.html \
+# 	html/virt-ls.1.html \
+# 	html/virt-make-fs.1.html \
+# 	html/virt-rescue.1.html \
+# 	html/virt-resize.1.html \
+# 	html/virt-sparsify.1.html \
+# 	html/virt-sysprep.1.html \
+# 	html/virt-tar.1.html \
+# 	html/virt-tar-in.1.html \
+# 	html/virt-tar-out.1.html \
+# 	html/virt-v2v.1.html \
+# 	html/virt-win-reg.1.html
 
 if HAVE_ERLANG
-HTMLFILES += html/guestfs-erlang.3.html
+# HTMLFILES += html/guestfs-erlang.3.html
 endif
 if HAVE_GOLANG
-HTMLFILES += html/guestfs-golang.3.html
+# HTMLFILES += html/guestfs-golang.3.html
 endif
 if HAVE_JAVA
-HTMLFILES += html/guestfs-java.3.html
+# HTMLFILES += html/guestfs-java.3.html
 endif
 if HAVE_LUA
-HTMLFILES += html/guestfs-lua.3.html
+# HTMLFILES += html/guestfs-lua.3.html
 endif
 if HAVE_OCAML
 # HTMLFILES += html/guestfs-ocaml.3.html
 endif
 if HAVE_PERL
-HTMLFILES += html/guestfs-perl.3.html
+# HTMLFILES += html/guestfs-perl.3.html
 endif
 if HAVE_PYTHON
-HTMLFILES += html/guestfs-python.3.html
+# HTMLFILES += html/guestfs-python.3.html
 endif
 if HAVE_RUBY
 # HTMLFILES += html/guestfs-ruby.3.html
 endif
 if HAVE_FUSE
-HTMLFILES += \
-	html/guestmount.1.html \
-	html/guestunmount.1.html
+# HTMLFILES += \
+# 	html/guestmount.1.html \
+# 	html/guestunmount.1.html
 endif
 if HAVE_P2V
-HTMLFILES += \
-	html/virt-p2v.1.html \
-	html/virt-p2v-make-disk.1.html \
-	html/virt-p2v-make-kickstart.1.html
+# HTMLFILES += \
+# 	html/virt-p2v.1.html \
+# 	html/virt-p2v-make-disk.1.html \
+# 	html/virt-p2v-make-kickstart.1.html
 endif
 
-HTMLSUPPORTFILES = \
-	html/draft.png \
-	html/pod.css \
-	html/virt-builder.svg
+HTMLSUPPORTFILES = 
+# 	html/draft.png \
+# 	html/pod.css \
+# 	html/virt-builder.svg
 
-TEXTFILES = BUGS README TODO
+# TEXTFILES = BUGS README TODO
 
-BUILDERFILES = \
-	builder/website/README \
-	builder/website/index \
-	builder/website/index.asc
+BUILDERFILES = 
+# 	builder/website/README \
+# 	builder/website/index \
+# 	builder/website/index.asc
 
-WEBSITEDIR = $(HOME)/d/websites/libguestfs
+# WEBSITEDIR = $(HOME)/d/websites/libguestfs
 
 # For reasons not fully understood, we need to rebuild all the
 # man pages and HTMLFILES from scratch here.
