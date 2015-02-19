@@ -498,6 +498,9 @@ guestfs___set_backend (guestfs_h *g, const char *method)
   if (STREQ (method, "appliance"))
     method = "direct";
 
+  printf("%s", "check existing backends\n");
+  assert(backends != NULL);
+
   for (b = backends; b != NULL; b = b->next) {
     if (STREQ (method, b->name))
       break;

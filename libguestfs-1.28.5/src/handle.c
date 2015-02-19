@@ -79,6 +79,8 @@ guestfs_create (void)
 guestfs_h *
 guestfs_create_flags (unsigned flags, ...)
 {
+  fprintf(stdout, "%s", "inside guestfs_create_flags\n");
+
   guestfs_h *g;
 
   g = calloc (1, sizeof (*g));
