@@ -105,7 +105,16 @@ accept_connection (guestfs_h *g, struct connection *connv)
 
     /* Accept on socket? */
     if ((fds[0].revents & POLLIN) != 0) {
+#ifdef __CYGWIN
+        printf("__CYGWIN__: accept\n")
+        struct sockaddr_in cli_addr;
+        int clilen;
+        bzero((char*)&cli_addr, sizeof(cli_addr));
+        clilen = sizeof(cli_addr);
+        newsock = accept(accept_socket, (struct sockaddr*)&cli_addr, (socklen_t*)&clilen);
+#else
       sock = accept4 (conn->daemon_accept_sock, NULL, NULL, SOCK_CLOEXEC);
+#endif
       if (sock == -1) {
         if (errno == EINTR || errno == EAGAIN)
           continue;

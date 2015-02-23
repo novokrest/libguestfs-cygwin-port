@@ -267,7 +267,12 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
   int flags;
   int sv[2];
   char guestfsd_sock[256];
+#ifdef __CYGWIN__
+  printf("__CYGWIN__: define addr\n");
+  struct sockaddr_in addr;
+#else
   struct sockaddr_un addr;
+#endif
   CLEANUP_FREE char *kernel = NULL, *dtb = NULL,
     *initrd = NULL, *appliance = NULL;
   int has_appliance_drive;
@@ -331,16 +336,28 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
   snprintf (guestfsd_sock, sizeof guestfsd_sock, "%s/guestfsd.sock", g->tmpdir);
   unlink (guestfsd_sock);
 
-  daemon_accept_sock = socket (AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC, 0);
+#ifdef __CYGWIN__
+  printf("__CYGWIN__: daemon_accept_sock\n");
+  daemon_accept_sock = socket(AF_INET, SOCK_STREAM | SOCK_CLOEXEC, 0);
+#else
+  daemon_accept_sock = socket(AF_UNIX, SOCK_STREAM | SOCK_CLOEXEC, 0);
+#endif
   if (daemon_accept_sock == -1) {
     perrorf (g, "socket");
     goto cleanup0;
   }
 
+#ifdef __CYGWIN__
+  printf("__CYGWIN__: init addr\n");
+  bzero((char*)&addr, sizeof(addr));
+  addr.sin_family = AF_INET;
+  addr.sin_addr.s_addr = htonl(INADDR_ANY);
+  addr.sin_port = htons(7777);
+#else
   addr.sun_family = AF_UNIX;
   strncpy (addr.sun_path, guestfsd_sock, UNIX_PATH_MAX);
   addr.sun_path[UNIX_PATH_MAX-1] = '\0';
-
+#endif
   if (bind (daemon_accept_sock, (struct sockaddr *) &addr,
             sizeof addr) == -1) {
     perrorf (g, "bind");
@@ -477,13 +494,13 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
   }
 
   ADD_CMDLINE ("-kernel");
-  ADD_CMDLINE (kernel);
+  ADD_CMDLINE_PRINTF ("C:/cygwin64%s", kernel);
   if (dtb) {
     ADD_CMDLINE ("-dtb");
     ADD_CMDLINE (dtb);
   }
   ADD_CMDLINE ("-initrd");
-  ADD_CMDLINE (initrd);
+  ADD_CMDLINE_PRINTF ("C:/cygwin64%s", initrd);
 
   /* Add drives */
   virtio_scsi = qemu_supports_virtio_scsi (g, data);
@@ -530,7 +547,7 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
        * the if=... at the end.
        */
       param = safe_asprintf
-        (g, "file=%s%s,cache=%s%s%s%s%s%s%s,id=hd%zu",
+        (g, "file=C:/cygwin64%s%s,cache=%s%s%s%s%s%s%s,id=hd%zu",
          escaped_file,
          drv->readonly ? ",snapshot=on" : "",
          drv->cachemode ? drv->cachemode : "writeback",
@@ -586,7 +603,7 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
   /* Add the ext2 appliance drive (after all the drives). */
   if (has_appliance_drive) {
     ADD_CMDLINE ("-drive");
-    ADD_CMDLINE_PRINTF ("file=%s,snapshot=on,id=appliance,cache=unsafe,if=none",
+    ADD_CMDLINE_PRINTF ("file=C:/cygwin64%s,snapshot=on,id=appliance,cache=unsafe,if=none",
                         appliance);
 
     if (virtio_scsi) {
@@ -632,7 +649,12 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
 
   /* Set up virtio-serial for the communications channel. */
   ADD_CMDLINE ("-chardev");
+#ifdef __CYGWIN__
+  printf("__CYGWIN__: configure -chardev socket\n");
+  ADD_CMDLINE("socket,host=localhost,port=7777,id=channel0");
+#else
   ADD_CMDLINE_PRINTF ("socket,path=%s,id=channel0", guestfsd_sock);
+#endif
   ADD_CMDLINE ("-device");
   ADD_CMDLINE ("virtserialport,chardev=channel0,name=org.libguestfs.channel.0");
 
