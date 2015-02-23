@@ -267,8 +267,10 @@ build_supermin_appliance (guestfs_h *g,
   if (g->verbose)
     guestfs___print_timestamped_message (g, "run supermin");
 
+#ifndef __CYGWIN__
   if (run_supermin_build (g, lockfile, appliancedir, supermin_path) == -1)
     return -1;
+#endif __CYGWIN__
 
   if (g->verbose)
     guestfs___print_timestamped_message (g, "finished building supermin appliance");
