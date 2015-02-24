@@ -178,6 +178,11 @@ libguestfs_la_CFLAGS += $(FUSE_CFLAGS)
 libguestfs_la_LIBADD += $(FUSE_LIBS)
 endif
 
+if HAVE_CYGWIN
+CYGWIN_ROOT_PATH != cygpath -m /
+libguestfs_la_CFLAGS += -DCYGWIN_ROOT_PATH="\"$(CYGWIN_ROOT_PATH)\""
+endif
+
 # Convenience libraries.
 noinst_LTLIBRARIES = liberrnostring.la libprotocol.la libutils.la
 

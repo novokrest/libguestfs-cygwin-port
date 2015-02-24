@@ -83,6 +83,30 @@ AC_ARG_WITH([extra],
     [libguestfs_extra=]
 )
 
+AC_ARG_WITH([cygwin],
+    [AS_HELP_STRING([--with-cygwin],
+                    [compile libguestfs for cygwin])],
+    [],
+    []
+)
+
+dnl Check for cygwin exists if --with-cigwin is specified
+AS_IF([test "x$with_cygwin" == xyes],
+        [
+            AC_MSG_CHECKING([whether cygwin is installed])
+            AC_REQUIRE([AC_CANONICAL_HOST])
+            case "$host_os" in
+            *cygwin* ) AC_DEFINE_UNQUOTED([HAVE_CYGWIN], [1], [Define 1 if you have cygwin])
+                       AC_MSG_RESULT([$with_cygwin])
+                       ;;
+                   * ) AC_MSG_FAILURE([--with-cygwin was given, but test for cygwin failed]);;
+            esac
+        ],
+        []
+)
+
+AM_CONDITIONAL([HAVE_CYGWIN],[test "x$with_cygwin" == xyes])
+
 AC_MSG_NOTICE([libguestfs version libguestfs_major.libguestfs_minor.libguestfs_release$libguestfs_extra])
 
 dnl Split up the version string.
