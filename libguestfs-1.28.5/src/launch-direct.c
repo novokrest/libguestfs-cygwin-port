@@ -494,13 +494,21 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
   }
 
   ADD_CMDLINE ("-kernel");
-  ADD_CMDLINE_PRINTF ("C:/cygwin64%s", kernel);
+#ifdef __CYGWIN__
+  ADD_CMDLINE_PRINTF ("%s%s", CYGWIN_ROOT_PATH, kernel);
+#else
+  ADD_CMDLINE(kernel);
+#endif
   if (dtb) {
     ADD_CMDLINE ("-dtb");
     ADD_CMDLINE (dtb);
   }
   ADD_CMDLINE ("-initrd");
-  ADD_CMDLINE_PRINTF ("C:/cygwin64%s", initrd);
+#ifdef __CYGWIN__
+  ADD_CMDLINE_PRINTF ("%s%s", CYGWIN_ROOT_PATH, initrd);
+#else
+  ADD_CMDLINE(initrd);
+#endif
 
   /* Add drives */
   virtio_scsi = qemu_supports_virtio_scsi (g, data);
@@ -547,7 +555,12 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
        * the if=... at the end.
        */
       param = safe_asprintf
-        (g, "file=C:/cygwin64%s%s,cache=%s%s%s%s%s%s%s,id=hd%zu",
+#ifdef __CYGWIN__
+        (g, "file=%s%s%s,cache=%s%s%s%s%s%s%s,id=hd%zu",
+         CYGWIN_ROOT_PATH,
+#else
+        (g, "file=%s%s,cache=%s%s%s%s%s%s%s,id=hd%zu",
+#endif
          escaped_file,
          drv->readonly ? ",snapshot=on" : "",
          drv->cachemode ? drv->cachemode : "writeback",
@@ -603,8 +616,14 @@ launch_direct (guestfs_h *g, void *datav, const char *arg)
   /* Add the ext2 appliance drive (after all the drives). */
   if (has_appliance_drive) {
     ADD_CMDLINE ("-drive");
-    ADD_CMDLINE_PRINTF ("file=C:/cygwin64%s,snapshot=on,id=appliance,cache=unsafe,if=none",
+#ifdef __CYGWIN__
+    ADD_CMDLINE_PRINTF ("file=%s%s,snapshot=on,id=appliance,cache=unsafe,if=none",
+                        CYGWIN_ROOT_PATH,
                         appliance);
+#else
+    ADD_CMDLINE_PRINTF ("file=%s,snapshot=on,id=appliance,cache=unsafe,if=none",
+                        appliance);
+#endif
 
     if (virtio_scsi) {
       ADD_CMDLINE ("-device");
